@@ -1,6 +1,4 @@
-% PsychoPy tutorial
-% Ariel Rokem
-% License:CC(http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% Nitime talk
 
 \documentclass{beamer}
 
@@ -28,13 +26,13 @@ stringstyle=\color{strings}}
 
 \title[nitime]{\tt{nitime}}
 \subtitle
-{\sc{Time-series analysis for fMRI data}}
+{{Time-series analysis for neuroscience data in Python}}
 
 \author[Ariel Rokem] % (optional, use only with lots of authors)
 {Ariel Rokem}
-\date{June 3rd, 2011}
-\institute[University of California, Berkeley]
-{University of California, Berkeley}
+\date{August 31st, 2011}
+\institute[Stanford University]
+{Stanford University}
 
 \pgfdeclareimage[height=1.5cm]{ucb-logo}{figures/ucb_logo}
 % put nipy logo in bottom left
@@ -64,14 +62,11 @@ stringstyle=\color{strings}}
 \item
 Scientific motivation
 \pause
-\item
-The \tt{nitime} \sc{software library}
-\pause
 \item 
 A simple example: coherence
 \pause
 \item
-A scientifically interesting example
+The \tt{nitime} \sc{software library}
 \end{itemize}
 \end{frame}
 
@@ -114,6 +109,146 @@ Felleman and Van Essen (1991)
 \end{frame}
 
 \begin{frame}
+\frametitle{Using coherency to study task-related networks}
+\includegraphics[height=5.7cm]{figures/lauritzen1}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
+\frametitle{Covert attention task}
+\includegraphics[height=5.7cm]{figures/lauritzen2}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
+\frametitle{Hemodynamic delays}
+\includegraphics[height=2.7cm]{figures/hemo}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hemodynamic delays}
+\includegraphics[height=3.7cm]{figures/tseries_w_hemo}
+\end{frame}
+
+\begin{frame}
+\frametitle{Coherency}
+\includegraphics[height=2.7cm]{figures/tseries_w_hemo_w_coh}
+\\
+\hfill
+Sun et al. (2004,2005)
+\end{frame}
+
+\begin{frame}
+\frametitle{Coherency}
+A spectral analog of correlation
+\end{frame}
+
+\begin{frame}
+\frametitle{Coherency}
+$C_{xy}(\omega) = \frac{f_{xy}(\omega)}{\sqrt{f_{xx}(\omega)f_{yy}(\omega)}}$
+\pause
+\\
+\vfill
+Where, $f_{xy}$ is the cross-spectral density and 
+\\
+$f_{xx}$ is the PSD of $x$
+\end{frame}
+
+\begin{frame}
+\frametitle{Coherency}
+Coherency is complex-valued:
+\\
+\vfill
+\pause
+Coherence: $Coh_{xy} (\omega) = abs(C_{xy}(\omega)) = $
+\pause
+$\frac{|f_{xy}(\omega)|^2}{f_{xx}(\omega)f_{yy}(\omega)}$
+\pause 
+\\
+\vfill
+Ranges from $0$ to $1$
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Baseline coherence}
+\includegraphics[height=2.7cm]{figures/lauritzen3}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
+\frametitle{Attention coherence}
+\includegraphics[height=2.7cm]{figures/lauritzen4}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
+\frametitle{Difference in coherence}
+\includegraphics[height=5.7cm]{figures/lauritzen5}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
+\frametitle{Coherency}
+Coherency is complex-valued:
+\\
+\vfill
+Coherence: $Coh_{xy} (\omega) = abs(C_{xy}(\omega)) = $
+$\frac{|f_{xy}(\omega)|^2}{f_{xx}(\omega)f_{yy}(\omega)}$
+\\
+\pause
+\vfill
+Phase: $\phi(\omega)= angle(C_{xy}) =
+tan^{-1}\frac{\Im(f_{xy}(\omega))}{\Re(f_{xy}(\omega))}$
+\vfill
+\pause
+Ranges from $-\pi$ to $\pi$
+\end{frame}
+
+\begin{frame}
+\frametitle{Time delay}
+The time-delay between two time-series can be calculated from the phase delay 
+\\ 
+\pause
+\vspace{1cm}
+$\Delta t (\omega) = \frac{\phi(\omega)}{2 \pi \omega}$
+\end{frame}
+
+\begin{frame}
+\frametitle{Time delay}
+\includegraphics[height=2.7cm]{figures/lauritzen6}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
+\frametitle{Delay difference}
+\includegraphics[height=5.7cm]{figures/lauritzen7}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
+\frametitle{Task-related network changes:}
+\includegraphics[height=5.7cm]{figures/lauritzen8}
+\\
+\hfill 
+Lauritzen et al. (2009)
+\end{frame}
+
+\begin{frame}
 \frametitle{\tt{Nitime}}
 \begin{itemize}
 \pause
@@ -131,6 +266,33 @@ Part of the \tt{NIPY} \sc{project}
 \pause
 \item
 \tt{http://nipy.org/nitime}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Why Python?}
+\begin{itemize}
+\pause
+\item
+A full-fledged programming language
+\pause
+\item
+OO is built in 
+\pause
+\item
+Powerful testing frameworks (sphinx)
+\pause
+\item
+Documentation framework (nose) 
+\pause
+\item
+Libraries for scientific computing (numpy, scipy)
+\pause
+\item
+Libraries for visualization (2D: matplotlib, 3D: mayavi).
+\pause
+\item 
+For more details see: 
 \end{itemize}
 \end{frame}
 
@@ -328,6 +490,9 @@ Provides a more stream-lined analysis interface
 \item
 \pause
 \tt{spectral}
+\item
+\pause
+\tt{Granger 'causality'}
 \end{itemize}
 \end{frame}
 
@@ -362,58 +527,8 @@ $Rxy(\tau) = \sum_{i=0}^{T}{x(t)y(t+\tau)}$
 $r_{xy}=0.25$
 \end{frame}
 
-\begin{frame}
-\frametitle{Why should we care? }
-Hemodynamic delays
-\\
-\includegraphics[height=2.7cm]{figures/hemo}
-\end{frame}
-
-\begin{frame}
-\frametitle{Why should we care?}
-Hemodynamic delays
-\\
-\includegraphics[height=3.7cm]{figures/tseries_w_hemo}
-\end{frame}
-
-\begin{frame}
-\frametitle{Coherency}
-A spectral analog of correlation
-\end{frame}
-
-\begin{frame}
-\frametitle{Coherency}
-$C_{xy}(\omega) = \frac{f_{xy}(\omega)}{\sqrt{f_{xx}(\omega)f_{yy}(\omega)}}$
-\pause
-\\
-\vfill
-Where, $f_{xy}$ is the cross-spectral density and 
-\\
-$f_{xx}$ is the PSD of $x$
-\end{frame}
-
-\begin{frame}
-\frametitle{Coherency}
-\includegraphics[height=5.7cm]{figures/outa_phase_tseries_psd}
-\end{frame}
-
-\begin{frame}
-\frametitle{Coherency}
-Coherency is complex-valued:
-\\
-\vfill
-\pause
-Coherence: $Coh_{xy} (\omega) = abs(C_{xy}(\omega)) = $
-\pause
-$\frac{|f_{xy}(\omega)|^2}{f_{xx}(\omega)f_{yy}(\omega)}$
-\pause 
-\\
-\vfill
-Ranges from $0$ to $1$
-\end{frame}
-
 \begin{frame}[fragile]
-\frametitle{Phase}
+\frametitle{Bivariate analysis 2: Coherence}
 \begin{lstlisting}
 >>> plt.plot(C.frequencies, C.coherence[0,1])
 \end{lstlisting}
@@ -422,23 +537,6 @@ Ranges from $0$ to $1$
 \begin{frame}
 \frametitle{Coherence}
 \includegraphics[height=5.7cm]{figures/outa_phase_tseries_coh}
-\end{frame}
-
-\begin{frame}
-\frametitle{Coherency}
-Coherency is complex-valued:
-\\
-\vfill
-Coherence: $Coh_{xy} (\omega) = abs(C_{xy}(\omega)) = $
-$\frac{|f_{xy}(\omega)|^2}{f_{xx}(\omega)f_{yy}(\omega)}$
-\\
-\pause
-\vfill
-Phase: $\phi(\omega)= angle(C_{xy}) =
-tan^{-1}\frac{\Im(f_{xy}(\omega))}{\Re(f_{xy}(\omega))}$
-\vfill
-\pause
-Ranges from $-\pi$ to $\pi$
 \end{frame}
 
 \begin{frame}[fragile]
@@ -452,7 +550,6 @@ Ranges from $-\pi$ to $\pi$
 \frametitle{Phase}
 \includegraphics[height=5.7cm]{figures/outa_phase_tseries_ph}
 \end{frame}
-
 
 \begin{frame}[fragile]
 \frametitle{Not surprising}
@@ -469,109 +566,6 @@ Ranges from $-\pi$ to $\pi$
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}
-\frametitle{Coherency}
-\includegraphics[height=2.7cm]{figures/tseries_w_hemo_w_coh}
-\\
-\hfill
-Sun et al. (2004,2005)
-\end{frame}
-
-\begin{frame}
-\frametitle{Using coherency to study task-related networks}
-\includegraphics[height=5.7cm]{figures/lauritzen1}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Covert attention task}
-\includegraphics[height=5.7cm]{figures/lauritzen2}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-\begin{frame}
-\frametitle{Baseline coherence}
-\includegraphics[height=2.7cm]{figures/lauritzen3}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-\begin{frame}
-\frametitle{Attention coherence}
-\includegraphics[height=2.7cm]{figures/lauritzen4}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-\begin{frame}
-\frametitle{Difference in coherence}
-\includegraphics[height=5.7cm]{figures/lauritzen5}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Time delay}
-The time-delay between two time-series can be calculated from the phase delay 
-\\ 
-\pause
-\vspace{1cm}
-$\Delta t (\omega) = \frac{\phi(\omega)}{2 \pi \omega}$
-\end{frame}
-
-\begin{frame}
-\frametitle{Time delay}
-\includegraphics[height=2.7cm]{figures/lauritzen6}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-\begin{frame}
-\frametitle{Delay difference}
-\includegraphics[height=5.7cm]{figures/lauritzen7}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-\begin{frame}
-\frametitle{Task-related network changes:}
-\includegraphics[height=5.7cm]{figures/lauritzen8}
-\\
-\hfill 
-Lauritzen et al. (2009)
-\end{frame}
-
-\begin{frame}
-\frametitle{Coherency analysis: summary}
-\pause
-\begin{itemize}
-\item
-Coherency analysis is a spectral analog of correlation
-\pause
-\item 
-Overcomes some of the pitfalls of 0-order correlation
-\pause
-\item
-But - when used for fMRI need to pay attention to: 
-\pause
-\item  
-Baseline connectivity
-\pause
-\item
-Confounds due to HRF differences
-\end{itemize}
-\end{frame}
 
 \begin{frame}
 \frametitle{More examples}
@@ -596,33 +590,8 @@ Allows for flexible use: choose the \tt{analysis} \sc{module if you prefer a mor
 \pause
 \item
 Or the \tt{algorithms} \sc{module if you prefer more customability}
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Stay tuned}
-\begin{itemize}
-
-\pause
-\item
-0.3 release in the next couple of weeks
-
-\pause
-\item
-Which will include new stuff: 
-
-\pause
-\item
-Granger causality
-
-\pause
-\item
-Future work: 
-
-\pause
-\item
-Network analysis 
+\item 
+Integration with mrVista: http://www.github.com/arokem/vista_utils
 
 \end{itemize}
 \end{frame}
